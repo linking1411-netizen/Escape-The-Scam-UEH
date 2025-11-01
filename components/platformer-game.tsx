@@ -1010,9 +1010,6 @@ export default function PlatformerGame({
                 ))}
               </div>
             </div>
-            <div>
-              CYBER IQ: <span className="text-neon-green">{gameState.cyberIQ + cyberIQGainedRef.current}</span>
-            </div>
                       </div>
 
           <MiniRadar
