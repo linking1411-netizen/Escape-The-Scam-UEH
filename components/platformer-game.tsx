@@ -1110,7 +1110,7 @@ export default function PlatformerGame({
               </div>
 
               <div>
-                <h3 className="font-bold text-neon-green mb-1">🛡️ V��ng An Toàn:</h3>
+                <h3 className="font-bold text-neon-green mb-1">🛡️ Vòng An Toàn:</h3>
                 <p>Khi bắt đầu mỗi tầng, bạn có 2 giây miễn sát thương trong vùng xanh lá để chuẩn bị!</p>
               </div>
 
@@ -1137,7 +1137,7 @@ export default function PlatformerGame({
           <div className="glass-panel rounded-lg p-8 text-center space-y-4 max-w-md">
             <div className="text-4xl">🎉</div>
             <h2 className="text-3xl font-bold text-neon-green">HOÀN THÀNH!</h2>
-            <p className="text-foreground/90">Bạn đã vượt qua t��ng {gameState.currentLevel}!</p>
+            <p className="text-foreground/90">Bạn đã vượt qua tầng {gameState.currentLevel}!</p>
             <div className="text-2xl font-bold text-neon-cyan">+{cyberIQGainedRef.current} Cyber IQ</div>
           </div>
         </div>

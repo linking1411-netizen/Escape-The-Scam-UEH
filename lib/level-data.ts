@@ -95,7 +95,7 @@ export const levelData: LevelData[] = [
         answers: [
           "A. Bấm vào link để nhận quà",
           "B. Gửi link cho bạn bè để hỏi thử",
-          "C. Bỏ qua, kh��ng nhấp vào và báo cáo tin nhắn lừa đảo",
+          "C. Bỏ qua, không nhấp vào và báo cáo tin nhắn lừa đảo",
           "D. Lưu lại để hôm sau kiểm tra",
         ],
         correctAnswer: 2,
@@ -246,7 +246,7 @@ export const levelData: LevelData[] = [
           "A. Chuyển tiền ngay để bảo vệ hình ảnh",
           "B. Báo công an và giữ lại toàn bộ tin nhắn làm bằng chứng",
           "C. Chặn tin nhắn và im lặng",
-          "D. Đăng tin l��n mạng để nhờ hỗ trợ",
+          "D. Đăng tin lên mạng xã hội để nhờ hỗ trợ",
         ],
         correctAnswer: 1,
         explanation: "Đây là hành vi tống tiền. Cần giữ bằng chứng (tin nhắn, tài khoản, thời gian) và trình báo ngay.",
@@ -256,13 +256,13 @@ export const levelData: LevelData[] = [
         title: "Câu 8: Phát hiện bị lừa",
         scenario: "Khi phát hiện bị lừa đảo chuyển tiền, bước đầu tiên cần làm là:",
         answers: [
-          "A. X��a lịch sử giao dịch để tránh bị phát hiện",
+          "A. Xóa lịch sử giao dịch để tránh bị phát hiện",
           "B. Báo ngay cho ngân hàng để khóa tài khoản và liên hệ công an",
           "C. Đợi vài giờ xem tiền có được hoàn lại không",
           "D. Đăng bài lên mạng xã hội nhờ hỗ trợ",
         ],
         correctAnswer: 1,
-        explanation: "Báo ngân hàng sớm giúp phong tỏa giao dịch, t��ng khả năng thu hồi tiền.",
+        explanation: "Báo ngân hàng sớm giúp phong tỏa giao dịch, tăng khả năng thu hồi tiền.",
         villainIcon: "🤖",
       },
       {
