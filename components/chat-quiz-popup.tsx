@@ -173,9 +173,9 @@ export default function ChatQuizPopup({ question, onAnswer, avatarUrl }: ChatQui
 
             {/* Answer buttons */}
             {showAnswers && !showExplanation && (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-2 pt-3 sm:pt-4">
-                <div className="text-center text-xs sm:text-sm font-bold text-neon-green mb-2 sm:mb-3">
-                  Chọn câu trả lời của bạn:
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-1.5 xs:space-y-2 pt-2 xs:pt-3 sm:pt-4">
+                <div className="text-center text-[10px] xs:text-xs sm:text-sm font-bold text-neon-green mb-1.5 xs:mb-2 sm:mb-3">
+                  Chọn câu trả lời:
                 </div>
                 {question.answers.map((answer, index) => (
                   <Button
@@ -206,7 +206,7 @@ export default function ChatQuizPopup({ question, onAnswer, avatarUrl }: ChatQui
                 >
                   <div className="flex items-center gap-1.5 xs:gap-2 mb-1.5 xs:mb-2 sm:mb-3">
                     <div className="text-xl xs:text-2xl sm:text-3xl flex-shrink-0">
-                      {selectedAnswer === question.correctAnswer ? "✅" : "❌"}
+                      {selectedAnswer === question.correctAnswer ? "✅" : "��"}
                     </div>
                     <div className="font-bold text-sm xs:text-base sm:text-lg">
                       {selectedAnswer === question.correctAnswer ? "Chính xác!" : "Sai rồi!"}
