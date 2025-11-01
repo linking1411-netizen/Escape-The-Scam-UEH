@@ -98,11 +98,11 @@ export default function ChatQuizPopup({ question, onAnswer, avatarUrl }: ChatQui
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-md p-3 sm:p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-md p-2 xs:p-3 sm:p-4">
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="w-full max-w-sm sm:max-w-md lg:max-w-2xl"
+        className="w-full max-w-xs xs:max-w-sm sm:max-w-md lg:max-w-2xl h-auto max-h-[90vh]"
       >
         {/* Chat container */}
         <div className="glass-panel rounded-lg overflow-hidden border-2 border-primary/50 shadow-2xl">
