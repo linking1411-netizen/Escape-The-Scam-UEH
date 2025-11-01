@@ -139,7 +139,7 @@ export default function PlatformerGame({
   useEffect(() => {
     const questionBoxImg = new Image()
     questionBoxImg.src =
-      "https://cdn.builder.io/api/v1/image/assets%2F04c52f60f8424a228161dfa6f3eaf57e%2F6af58066daf541d9bd9b1a2f03c4e5bb?format=webp&width=800"
+      "https://cdn.builder.io/api/v1/image/assets%2Fa1364f8719984147b2ab8641706334f8%2Fda153e9a130a41c8910cdf2394cc3109?format=webp&width=800"
     questionBoxImg.onload = () => {
       questionBoxImageRef.current = questionBoxImg
     }
