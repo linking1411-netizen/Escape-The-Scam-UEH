@@ -163,7 +163,7 @@ export default function ChatQuizPopup({ question, onAnswer, avatarUrl }: ChatQui
                   </div>
 
                   {msg.sender === "villain" && !avatarUrl && (
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-danger-red/30 flex items-center justify-center text-base sm:text-lg flex-shrink-0">
+                    <div className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 rounded-full bg-danger-red/30 flex items-center justify-center text-xs xs:text-base sm:text-lg flex-shrink-0">
                       {msg.icon}
                     </div>
                   )}
