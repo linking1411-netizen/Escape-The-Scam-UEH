@@ -33,7 +33,7 @@ export interface PatrolEnemy {
   y: number
   width: number
   height: number
-  type: "drone" | "virus" | "firewall" | "splitter" | "shooter" | "rope-crawler"
+  type: "drone" | "quiet_drone" | "firewall" | "splitter" | "shooter" | "rope-crawler"
   patrolStart: number
   patrolEnd: number
   patrolSpeed: number
@@ -260,7 +260,7 @@ export const levelData: LevelData[] = [
           "A. Chuyển tiền ngay để bảo vệ hình ảnh",
           "B. Báo công an và giữ lại toàn bộ tin nhắn làm bằng chứng",
           "C. Chặn tin nhắn và im lặng",
-          "D. Đăng tin lên mạng để nhờ hỗ trợ",
+          "D. Đăng tin lên mạng đ�� nhờ hỗ trợ",
         ],
         correctAnswer: 1,
         explanation: "Đây là hành vi tống tiền. Cần giữ bằng chứng (tin nhắn, tài khoản, thời gian) và trình báo ngay.",
