@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import TypewriterText from "@/components/typewriter-text"
 import type { GameState } from "@/app/page"
-import { Trophy, Star, Shield, Zap, BookOpen, User, Hash } from "lucide-react"
+import { Trophy, Star, Shield, BookOpen, User, Hash } from "lucide-react"
 import { useEffect, useState } from "react"
 import { SoundManager } from "@/lib/sound-manager"
 import KnowledgeBook from "@/components/knowledge-book"
@@ -22,14 +22,6 @@ export default function WinScene({ gameState, onRestart }: WinSceneProps) {
     SoundManager.playSuccess()
   }, [])
 
-  const getRank = (score: number) => {
-    if (score >= 120) return { title: "Huyền Thoại Cyber", color: "text-neon-cyan" }
-    if (score >= 100) return { title: "Chuyên Gia Bảo Mật", color: "text-neon-magenta" }
-    if (score >= 75) return { title: "Thám Tử Mạng", color: "text-neon-green" }
-    return { title: "Người Bảo Vệ", color: "text-primary" }
-  }
-
-  const rank = getRank(gameState.cyberIQ)
 
   return (
     <div className="relative min-h-screen flex items-center justify-center p-6 overflow-hidden">
@@ -137,11 +129,6 @@ export default function WinScene({ gameState, onRestart }: WinSceneProps) {
           transition={{ delay: 0.8 }}
           className="grid md:grid-cols-3 gap-6"
         >
-          <Card className="bg-black/40 border border-neon-cyan/40 backdrop-blur-lg text-center p-6 rounded-2xl shadow-lg">
-            <Zap className="w-8 h-8 text-neon-cyan mx-auto mb-1" />
-            <div className="text-4xl font-bold text-neon-cyan">{gameState.cyberIQ}</div>
-            <div className="text-sm text-gray-400">Cyber IQ</div>
-          </Card>
           <Card className="bg-black/40 border border-neon-magenta/40 backdrop-blur-lg text-center p-6 rounded-2xl shadow-lg">
             <Shield className="w-8 h-8 text-neon-magenta mx-auto mb-1" />
             <div className="text-4xl font-bold text-neon-magenta">{gameState.completedLevels.length}/4</div>
@@ -154,7 +141,7 @@ export default function WinScene({ gameState, onRestart }: WinSceneProps) {
           </Card>
         </motion.div>
 
-        {/* Rank */}
+        {/* Completion Message */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -163,13 +150,12 @@ export default function WinScene({ gameState, onRestart }: WinSceneProps) {
         >
           <div className="flex items-center gap-6">
             <Star
-              className={`w-16 h-16 ${rank.color} drop-shadow-[0_0_20px_currentColor] animate-spin-slow`}
+              className="w-16 h-16 text-neon-cyan drop-shadow-[0_0_20px_currentColor] animate-spin-slow"
             />
             <div>
-              <h3 className={`text-3xl font-extrabold ${rank.color}`}>{rank.title}</h3>
+              <h3 className="text-3xl font-extrabold text-neon-cyan">Bạn là chiến binh bảo vệ mạng thực thụ!</h3>
               <p className="text-gray-300 mt-2">
-                Bạn đã hoàn thành tất cả 4 tầng với {gameState.cyberIQ} Cyber IQ.  
-                Bạn là một chiến binh bảo vệ mạng thực thụ!
+                Bạn đã hoàn thành tất cả 4 tầng với kiến thức và sự thận trọng vượt bậc.
               </p>
             </div>
           </div>
@@ -187,7 +173,7 @@ export default function WinScene({ gameState, onRestart }: WinSceneProps) {
             className="bg-gradient-to-r from-neon-magenta to-neon-cyan hover:brightness-125 text-black font-bold text-lg px-8 py-6 rounded-xl shadow-[0_0_25px_#00ffffaa] transition-all"
           >
             <BookOpen className="w-5 h-5 mr-2" />
-            XEM SÁCH KIẾN THỨC
+            XEM S��CH KIẾN THỨC
           </Button>
           <Button
             onClick={onRestart}
