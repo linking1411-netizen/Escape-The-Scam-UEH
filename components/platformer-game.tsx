@@ -88,8 +88,8 @@ export default function PlatformerGame({
     y: 300,
     vx: 0,
     vy: 0,
-    width: 120,
-    height: 180,
+    width: 80,
+    height: 120,
     grounded: false,
     facingRight: true,
     animationState: "idle",
@@ -154,8 +154,8 @@ export default function PlatformerGame({
       y: 300,
       vx: 0,
       vy: 0,
-      width: 120,
-      height: 180,
+      width: 80,
+    height: 120,
       grounded: false,
       facingRight: true,
       animationState: "idle",
@@ -169,7 +169,7 @@ export default function PlatformerGame({
       y: e.y,
       width: 50,
       height: 50,
-      type: e.type,
+      type: "laptop",
       defeated: false,
       questionId: e.questionId,
       animationOffset: Math.random() * Math.PI * 2,
@@ -177,7 +177,7 @@ export default function PlatformerGame({
     enemiesRef.current = newEnemies
 
     const newPatrolEnemies: PatrolEnemy[] =
-      currentLevelData.current.patrolEnemies?.map((e, i) => ({
+      currentLevelData.current.patrolEnemies?.filter((e) => e.type === "drone" || e.type === "virus").map((e, i) => ({
         id: `patrol-${i}`,
         x: e.x,
         y: e.y,
@@ -195,7 +195,7 @@ export default function PlatformerGame({
     patrolEnemiesRef.current = newPatrolEnemies
 
     chestsRef.current = currentLevelData.current.chests.map((c) => ({ ...c }))
-    decorationsRef.current = currentLevelData.current.decorations.map((d) => ({ ...d }))
+    decorationsRef.current = []
 
     particlesRef.current = []
     setLevelComplete(false)
