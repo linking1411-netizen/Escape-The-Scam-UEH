@@ -96,7 +96,7 @@ export const levelData: LevelData[] = [
         scenario:
           'Bạn nhận được tin nhắn với đường link "http://gift-bank.vip" thông báo trúng thưởng 5 triệu đồng. Hành động nào là an toàn nhất?',
         answers: [
-          "A. Bấm vào link để nhận quà",
+          "A. Bấm vào link ��ể nhận quà",
           "B. Gửi link cho bạn bè để hỏi thử",
           "C. Bỏ qua, không nhấp vào và báo cáo tin nhắn lừa đảo",
           "D. Lưu lại để hôm sau kiểm tra",
@@ -161,11 +161,7 @@ export const levelData: LevelData[] = [
       { x: 600, y: 310, type: "firewall", patrolStart: 450, patrolEnd: 650, patrolSpeed: 0.9 },
     ],
     portal: { x: 800, y: 220, width: 80, height: 80 },
-    decorations: [
-      { x: 100, y: 500, width: 50, height: 50, type: "security-door", emoji: "🚪", color: "#ff0000", glow: true },
-      { x: 400, y: 300, width: 40, height: 40, type: "lock", emoji: "🔒", color: "#ffff00", glow: true },
-      { x: 650, y: 200, width: 45, height: 45, type: "alarm", emoji: "🚨", color: "#ff3333", glow: true },
-    ],
+    decorations: [],
     chests: [
       { x: 225, y: 420, width: 30, height: 30, type: "power", collected: false },
       { x: 725, y: 220, width: 30, height: 30, type: "data", collected: false },
@@ -281,7 +277,7 @@ export const levelData: LevelData[] = [
         scenario: "Sau khi nghi ngờ thiết bị bị nhiễm mã độc, bạn nên:",
         answers: [
           "A. Quét virus, đổi mật khẩu và bật xác thực hai lớp",
-          "B. Đăng nhập lại tài khoản cũ để kiểm tra dữ liệu",
+          "B. Đăng nhập lại tài khoản cũ để ki��m tra dữ liệu",
           "C. Mở USB khả nghi để xem nội dung",
           "D. Chia sẻ thiết bị cho người khác kiểm tra giúp",
         ],
