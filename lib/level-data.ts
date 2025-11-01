@@ -66,7 +66,7 @@ export interface LevelData {
 export const levelData: LevelData[] = [
   // Level 1: Phishing Lobby
   {
-    name: "T���ng 1: Nhận diện tin nhắn & đường link lừa đảo",
+    name: "Tầng 1: Nhận diện tin nhắn & đường link lừa đảo",
     theme: "dark cyber hotel lobby with neon lights",
     backgroundImage: "/dark-cyberpunk-hotel-lobby-with-neon-lights-and-glo.jpg",
     platforms: [
@@ -155,10 +155,10 @@ export const levelData: LevelData[] = [
       { x: 750, y: 210, type: "camera", questionId: 2 },
     ],
     patrolEnemies: [
-      { x: 100, y: 510, type: "splitter", patrolStart: 50, patrolEnd: 300, patrolSpeed: 1.0, splits: 2 },
+      { x: 100, y: 510, type: "drone", patrolStart: 50, patrolEnd: 300, patrolSpeed: 1.0 },
       { x: 350, y: 410, type: "drone", patrolStart: 200, patrolEnd: 400, patrolSpeed: 1.1 },
       { x: 420, y: 460, type: "quiet_drone", patrolStart: 420, patrolEnd: 420, patrolSpeed: 0 },
-      { x: 600, y: 310, type: "firewall", patrolStart: 450, patrolEnd: 650, patrolSpeed: 0.9 },
+      { x: 600, y: 310, type: "drone", patrolStart: 450, patrolEnd: 650, patrolSpeed: 0.9 },
     ],
     portal: { x: 800, y: 220, width: 80, height: 80 },
     decorations: [],
@@ -172,7 +172,7 @@ export const levelData: LevelData[] = [
         scenario:
           'Một dự án gửi bạn "Hợp đồng đầu tư online" hứa lợi nhuận 60%/tháng, yêu cầu chuyển tiền trong 1 giờ. Dấu hiệu nào cho thấy đây là lừa đảo?',
         answers: [
-          "A. Có giấy mời đ���u tư và chữ ký điện tử",
+          "A. Có giấy mời đầu tư và chữ ký điện tử",
           "B. Cam kết lãi suất quá cao, yêu cầu nộp tiền gấp",
           "C. Dự án có logo công ty rõ ràng",
           "D. Có người nổi tiếng quảng bá",
@@ -360,7 +360,7 @@ export const levelData: LevelData[] = [
         ],
         correctAnswer: 1,
         explanation:
-          "Cần lưu giữ bằng chứng (số điện thoại, tài khoản, video) và trình báo ngay cho công an để kịp thời xử lý.",
+          "Cần lưu giữ bằng chứng (số điện thoại, tài khoản, video) và trình báo ngay cho công an đ�� kịp thời xử lý.",
         villainIcon: "📷",
       },
     ],
