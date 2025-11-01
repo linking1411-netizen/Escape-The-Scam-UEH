@@ -721,44 +721,6 @@ export default function PlatformerGame({
         }
       })
 
-      if (enemies.every((e) => e.defeated)) {
-        const time = Date.now() * 0.001
-        const portal = currentLevelData.current.portal
-        const portalGradient = ctx.createRadialGradient(
-          portal.x + portal.width / 2,
-          portal.y + portal.height / 2,
-          0,
-          portal.x + portal.width / 2,
-          portal.y + portal.height / 2,
-          portal.width / 2,
-        )
-        portalGradient.addColorStop(0, "#00ffff")
-        portalGradient.addColorStop(0.5, "#ff00ff")
-        portalGradient.addColorStop(1, "transparent")
-
-        ctx.shadowBlur = 30
-        ctx.shadowColor = "#ff00ff"
-        ctx.fillStyle = portalGradient
-        ctx.fillRect(portal.x, portal.y, portal.width, portal.height)
-        ctx.shadowBlur = 0
-
-        for (let i = 0; i < 3; i++) {
-          const radius = (Math.sin(time * 2 + i) * 0.5 + 0.5) * portal.width * 0.4
-          ctx.strokeStyle = `rgba(255, 0, 255, ${0.5 - i * 0.15})`
-          ctx.lineWidth = 2
-          ctx.beginPath()
-          ctx.arc(portal.x + portal.width / 2, portal.y + portal.height / 2, radius, 0, Math.PI * 2)
-          ctx.stroke()
-        }
-
-        ctx.fillStyle = "#ffffff"
-        ctx.font = "bold 14px monospace"
-        ctx.textAlign = "center"
-        ctx.shadowBlur = 5
-        ctx.shadowColor = "#ffffff"
-        ctx.fillText("PORTAL", portal.x + portal.width / 2, portal.y + portal.height / 2)
-        ctx.shadowBlur = 0
-      }
 
       const time = Date.now() * 0.001
       enemies.forEach((enemy) => {
