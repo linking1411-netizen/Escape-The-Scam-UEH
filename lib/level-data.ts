@@ -23,7 +23,7 @@ export interface Chest {
   y: number
   width: number
   height: number
-  type: "life" | "data" | "power" | "virus"
+  type: "life" | "data" | "power"
   collected: boolean
 }
 
@@ -33,16 +33,13 @@ export interface PatrolEnemy {
   y: number
   width: number
   height: number
-  type: "drone" | "virus" | "firewall" | "splitter" | "shooter" | "rope-crawler"
+  type: "drone" | "quiet_drone" | "firewall" | "splitter" | "shooter" | "rope-crawler"
   patrolStart: number
   patrolEnd: number
   patrolSpeed: number
   patrolDirection?: number
   animationOffset?: number
-  splits?: number // For splitter enemy
-  shootCooldown?: number // For shooter enemy
-  ropeX?: number // For rope-crawler enemy
-  ropeLength?: number
+  // legacy properties removed: splits, shootCooldown, ropeX, ropeLength
 }
 
 export interface LevelData {
@@ -82,14 +79,10 @@ export const levelData: LevelData[] = [
     ],
     patrolEnemies: [
       { x: 200, y: 510, type: "drone", patrolStart: 100, patrolEnd: 280, patrolSpeed: 1.2 },
-      { x: 500, y: 410, type: "virus", patrolStart: 300, patrolEnd: 500, patrolSpeed: 1.0 },
+      { x: 500, y: 410, type: "quiet_drone", patrolStart: 500, patrolEnd: 500, patrolSpeed: 0 },
     ],
     portal: { x: 850, y: 410, width: 80, height: 80 },
-    decorations: [
-      { x: 50, y: 480, width: 60, height: 60, type: "error-screen", emoji: "⚠️", color: "#ff3333", glow: true },
-      { x: 150, y: 500, width: 40, height: 40, type: "reception", emoji: "🏨", color: "#00ffff", glow: true },
-      { x: 550, y: 300, width: 50, height: 50, type: "glitch-sign", emoji: "🏢", color: "#ff00ff", glow: true },
-    ],
+    decorations: [],
     chests: [
       { x: 350, y: 420, width: 30, height: 30, type: "life", collected: false },
       { x: 650, y: 320, width: 30, height: 30, type: "data", collected: false },
@@ -102,7 +95,7 @@ export const levelData: LevelData[] = [
         answers: [
           "A. Bấm vào link để nhận quà",
           "B. Gửi link cho bạn bè để hỏi thử",
-          "C. Bỏ qua, không nhấp vào và báo cáo tin nhắn lừa đảo",
+          "C. Bỏ qua, kh��ng nhấp vào và báo cáo tin nhắn lừa đảo",
           "D. Lưu lại để hôm sau kiểm tra",
         ],
         correctAnswer: 2,
@@ -159,16 +152,13 @@ export const levelData: LevelData[] = [
       { x: 750, y: 210, type: "camera", questionId: 2 },
     ],
     patrolEnemies: [
-      { x: 100, y: 510, type: "splitter", patrolStart: 50, patrolEnd: 300, patrolSpeed: 1.0, splits: 2 },
+      { x: 100, y: 510, type: "drone", patrolStart: 50, patrolEnd: 300, patrolSpeed: 1.0 },
       { x: 350, y: 410, type: "drone", patrolStart: 200, patrolEnd: 400, patrolSpeed: 1.1 },
-      { x: 600, y: 310, type: "firewall", patrolStart: 450, patrolEnd: 650, patrolSpeed: 0.9 },
+      { x: 420, y: 460, type: "quiet_drone", patrolStart: 420, patrolEnd: 420, patrolSpeed: 0 },
+      { x: 600, y: 310, type: "drone", patrolStart: 450, patrolEnd: 650, patrolSpeed: 0.9 },
     ],
     portal: { x: 800, y: 220, width: 80, height: 80 },
-    decorations: [
-      { x: 100, y: 500, width: 50, height: 50, type: "security-door", emoji: "🚪", color: "#ff0000", glow: true },
-      { x: 400, y: 300, width: 40, height: 40, type: "lock", emoji: "🔒", color: "#ffff00", glow: true },
-      { x: 650, y: 200, width: 45, height: 45, type: "alarm", emoji: "🚨", color: "#ff3333", glow: true },
-    ],
+    decorations: [],
     chests: [
       { x: 225, y: 420, width: 30, height: 30, type: "power", collected: false },
       { x: 725, y: 220, width: 30, height: 30, type: "data", collected: false },
@@ -238,15 +228,11 @@ export const levelData: LevelData[] = [
     ],
     patrolEnemies: [
       { x: 50, y: 510, type: "drone", patrolStart: 50, patrolEnd: 200, patrolSpeed: 1.2 },
-      { x: 250, y: 410, type: "shooter", patrolStart: 200, patrolEnd: 400, patrolSpeed: 0.8, shootCooldown: 0 },
-      { x: 500, y: 310, type: "virus", patrolStart: 350, patrolEnd: 550, patrolSpeed: 1.0 },
+      { x: 250, y: 410, type: "drone", patrolStart: 200, patrolEnd: 400, patrolSpeed: 0.8 },
+      { x: 500, y: 310, type: "quiet_drone", patrolStart: 500, patrolEnd: 500, patrolSpeed: 0 },
     ],
     portal: { x: 880, y: 370, width: 80, height: 80 },
-    decorations: [
-      { x: 80, y: 490, width: 50, height: 50, type: "gold", emoji: "💰", color: "#ffd700", glow: true },
-      { x: 350, y: 330, width: 55, height: 55, type: "ad-glitch", emoji: "📊", color: "#00ff00", glow: true },
-      { x: 600, y: 250, width: 45, height: 45, type: "money", emoji: "💵", color: "#00ff00", glow: true },
-    ],
+    decorations: [],
     chests: [
       { x: 175, y: 420, width: 30, height: 30, type: "life", collected: false },
       { x: 675, y: 270, width: 30, height: 30, type: "power", collected: false },
@@ -260,7 +246,7 @@ export const levelData: LevelData[] = [
           "A. Chuyển tiền ngay để bảo vệ hình ảnh",
           "B. Báo công an và giữ lại toàn bộ tin nhắn làm bằng chứng",
           "C. Chặn tin nhắn và im lặng",
-          "D. Đăng tin lên mạng để nhờ hỗ trợ",
+          "D. Đăng tin l��n mạng để nhờ hỗ trợ",
         ],
         correctAnswer: 1,
         explanation: "Đây là hành vi tống tiền. Cần giữ bằng chứng (tin nhắn, tài khoản, thời gian) và trình báo ngay.",
@@ -270,13 +256,13 @@ export const levelData: LevelData[] = [
         title: "Câu 8: Phát hiện bị lừa",
         scenario: "Khi phát hiện bị lừa đảo chuyển tiền, bước đầu tiên cần làm là:",
         answers: [
-          "A. Xóa lịch sử giao dịch để tránh bị phát hiện",
+          "A. X��a lịch sử giao dịch để tránh bị phát hiện",
           "B. Báo ngay cho ngân hàng để khóa tài khoản và liên hệ công an",
           "C. Đợi vài giờ xem tiền có được hoàn lại không",
           "D. Đăng bài lên mạng xã hội nhờ hỗ trợ",
         ],
         correctAnswer: 1,
-        explanation: "Báo ngân hàng sớm giúp phong tỏa giao dịch, tăng khả năng thu hồi tiền.",
+        explanation: "Báo ngân hàng sớm giúp phong tỏa giao dịch, t��ng khả năng thu hồi tiền.",
         villainIcon: "🤖",
       },
       {
@@ -313,25 +299,11 @@ export const levelData: LevelData[] = [
     ],
     patrolEnemies: [
       { x: 50, y: 510, type: "drone", patrolStart: 50, patrolEnd: 200, patrolSpeed: 1.4 },
-      {
-        x: 250,
-        y: 410,
-        type: "rope-crawler",
-        patrolStart: 200,
-        patrolEnd: 400,
-        patrolSpeed: 1.2,
-        ropeX: 300,
-        ropeLength: 200,
-      },
-      { x: 500, y: 310, type: "firewall", patrolStart: 450, patrolEnd: 650, patrolSpeed: 1.0 },
+      { x: 250, y: 410, type: "drone", patrolStart: 200, patrolEnd: 400, patrolSpeed: 1.2 },
+      { x: 500, y: 310, type: "drone", patrolStart: 450, patrolEnd: 650, patrolSpeed: 1.0 },
     ],
     portal: { x: 1000, y: 310, width: 80, height: 80 },
-    decorations: [
-      { x: 50, y: 490, width: 60, height: 60, type: "green-screen", emoji: "🎬", color: "#00ff00", glow: true },
-      { x: 350, y: 300, width: 45, height: 45, type: "camera", emoji: "📹", color: "#ff00ff", glow: true },
-      { x: 650, y: 400, width: 55, height: 55, type: "distorted-face", emoji: "👤", color: "#ff3333", glow: true },
-      { x: 950, y: 300, width: 40, height: 40, type: "ai-core", emoji: "🧠", color: "#00ffff", glow: true },
-    ],
+    decorations: [],
     chests: [
       { x: 125, y: 420, width: 30, height: 30, type: "life", collected: false },
       { x: 725, y: 420, width: 30, height: 30, type: "data", collected: false },

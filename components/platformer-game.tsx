@@ -55,20 +55,20 @@ interface Enemy {
 }
 
 interface PatrolEnemy {
-  id: string
-  x: number
-  y: number
-  width: number
-  height: number
-  type: "drone" | "virus" | "firewall" | "splitter" | "shooter" | "rope-crawler"
-  patrolStart: number
-  patrolEnd: number
-  patrolSpeed: number
-  patrolDirection: number
-  animationOffset: number
-  ropeX?: number
-  ropeLength?: number
-}
+    id: string
+    x: number
+    y: number
+    width: number
+    height: number
+    type: "drone" | "quiet_drone" | "firewall" | "splitter" | "shooter" | "rope-crawler"
+    patrolStart: number
+    patrolEnd: number
+    patrolSpeed: number
+    patrolDirection: number
+    animationOffset: number
+    ropeX?: number
+    ropeLength?: number
+  }
 
 export default function PlatformerGame({
   gameState,
@@ -80,6 +80,7 @@ export default function PlatformerGame({
   const characterImageRef = useRef<HTMLImageElement | null>(null)
   const scammerImageRef = useRef<HTMLImageElement | null>(null)
   const questionBoxImageRef = useRef<HTMLImageElement | null>(null)
+  const quietDroneImageRef = useRef<HTMLImageElement | null>(null)
   const jumpImageRef = useRef<HTMLImageElement | null>(null)
   const deadImageRef = useRef<HTMLImageElement | null>(null)
 
@@ -88,8 +89,8 @@ export default function PlatformerGame({
     y: 300,
     vx: 0,
     vy: 0,
-    width: 120,
-    height: 180,
+    width: 80,
+    height: 120,
     grounded: false,
     facingRight: true,
     animationState: "idle",
@@ -102,8 +103,7 @@ export default function PlatformerGame({
   const chestsRef = useRef<Chest[]>([])
   const decorationsRef = useRef<Decoration[]>([])
   const invincibilityTimerRef = useRef<number>(0)
-  const skipQuizPowerRef = useRef<number>(0)
-
+  
   const [showQuiz, setShowQuiz] = useState(false)
   const [currentEnemy, setCurrentEnemy] = useState<Enemy | null>(null)
   const [levelComplete, setLevelComplete] = useState(false)
@@ -130,7 +130,7 @@ export default function PlatformerGame({
   useEffect(() => {
     const scammerImg = new Image()
     scammerImg.src =
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scammer.png-UksmxqJ6iiBK3qXgq625oQJuvS1PM3.png"
+      "https://cdn.builder.io/api/v1/image/assets%2Fa1364f8719984147b2ab8641706334f8%2F87c14bbf98e541b1b7c08b735c8945e3?format=webp&width=800"
     scammerImg.onload = () => {
       scammerImageRef.current = scammerImg
     }
@@ -139,9 +139,16 @@ export default function PlatformerGame({
   useEffect(() => {
     const questionBoxImg = new Image()
     questionBoxImg.src =
-      "https://cdn.builder.io/api/v1/image/assets%2F04c52f60f8424a228161dfa6f3eaf57e%2F6af58066daf541d9bd9b1a2f03c4e5bb?format=webp&width=800"
+      "https://cdn.builder.io/api/v1/image/assets%2Fa1364f8719984147b2ab8641706334f8%2F3e15b926d5b5482c8c2da90d632e6bcd?format=webp&width=800"
     questionBoxImg.onload = () => {
       questionBoxImageRef.current = questionBoxImg
+    }
+
+    const quietDroneImg = new Image()
+    quietDroneImg.src =
+      "https://cdn.builder.io/api/v1/image/assets%2Fa1364f8719984147b2ab8641706334f8%2F3692630015b742a5b478443d31daa26f?format=webp&width=800"
+    quietDroneImg.onload = () => {
+      quietDroneImageRef.current = quietDroneImg
     }
   }, [])
 
@@ -154,8 +161,8 @@ export default function PlatformerGame({
       y: 300,
       vx: 0,
       vy: 0,
-      width: 120,
-      height: 180,
+      width: 80,
+    height: 120,
       grounded: false,
       facingRight: true,
       animationState: "idle",
@@ -177,25 +184,43 @@ export default function PlatformerGame({
     enemiesRef.current = newEnemies
 
     const newPatrolEnemies: PatrolEnemy[] =
-      currentLevelData.current.patrolEnemies?.map((e, i) => ({
+      currentLevelData.current.patrolEnemies?.filter((e) => e.type === "drone" || e.type === "quiet_drone").map((e, i) => ({
         id: `patrol-${i}`,
         x: e.x,
         y: e.y,
-        width: 45,
-        height: 45,
+        width: playerRef.current.width,
+        height: playerRef.current.height,
         type: e.type,
-        patrolStart: e.patrolStart,
-        patrolEnd: e.patrolEnd,
-        patrolSpeed: e.patrolSpeed,
+        patrolStart: typeof e.patrolStart === 'number' ? e.patrolStart : e.x,
+        patrolEnd: typeof e.patrolEnd === 'number' ? e.patrolEnd : e.x,
+        patrolSpeed: e.type === 'quiet_drone' ? 0 : e.patrolSpeed,
         patrolDirection: 1,
         animationOffset: Math.random() * Math.PI * 2,
         ropeX: e.ropeX,
         ropeLength: e.ropeLength,
       })) || []
-    patrolEnemiesRef.current = newPatrolEnemies
+    // Increase patrol difficulty by adding 2 extra patrol enemies per level (levelIndex starts at 1)
+    const extraCount = Math.max(0, (gameState.currentLevel - 1) * 2)
+    const extras: PatrolEnemy[] = []
+    const baseLen = newPatrolEnemies.length
+    for (let i = 0; i < extraCount; i++) {
+      const base = newPatrolEnemies[i % baseLen]
+      if (!base) continue
+      const offset = (i + 1) * 100
+      extras.push({
+        ...base,
+        id: `patrol-extra-${i}`,
+        x: Math.min(base.x + offset, 1100),
+        patrolStart: Math.max(0, base.patrolStart - 50),
+        patrolEnd: Math.min(1200, base.patrolEnd + 50),
+        patrolDirection: Math.random() > 0.5 ? 1 : -1,
+      })
+    }
+
+    patrolEnemiesRef.current = [...newPatrolEnemies, ...extras]
 
     chestsRef.current = currentLevelData.current.chests.map((c) => ({ ...c }))
-    decorationsRef.current = currentLevelData.current.decorations.map((d) => ({ ...d }))
+    decorationsRef.current = []
 
     particlesRef.current = []
     setLevelComplete(false)
@@ -492,11 +517,12 @@ export default function PlatformerGame({
             playerRef.current.x + playerRef.current.width > enemyHitboxX
 
           if (isStomping) {
-            enemy.defeated = true
-            cyberIQGainedRef.current += 10
-            newVy = -8 // Bounce back up
-            SoundManager.playSuccess()
-            createParticles(enemy.x + enemy.width / 2, enemy.y, 15, "#00ff00")
+            // Instead of instantly defeating on stomp, open the quiz so player must answer.
+            setCurrentEnemy(enemy)
+            setShowQuiz(true)
+            // bounce a little to indicate interaction
+            newVy = -6
+            SoundManager.playClick()
           } else if (
             playerRef.current.x < enemyHitboxX + enemyHitboxWidth &&
             playerRef.current.x + playerRef.current.width > enemyHitboxX &&
@@ -563,20 +589,7 @@ export default function PlatformerGame({
           } else if (chest.type === "data") {
             cyberIQGainedRef.current += 5
           } else if (chest.type === "power") {
-            skipQuizPowerRef.current++
-          } else if (chest.type === "virus") {
-            // Stun nearby enemies for 3 seconds
-            // Apply stun to patrol enemies
-            patrolEnemies.forEach((e) => {
-              const dist = Math.sqrt((e.x - chest.x) ** 2 + (e.y - chest.y) ** 2)
-              if (dist < 200) {
-                const originalSpeed = e.patrolSpeed
-                e.patrolSpeed = 0
-                setTimeout(() => {
-                  e.patrolSpeed = originalSpeed
-                }, 3000)
-              }
-            })
+            // power chest: grant life or data; skip removed
           }
         }
       })
@@ -690,7 +703,7 @@ export default function PlatformerGame({
           ctx.textAlign = "center"
           ctx.fillStyle = "#ffffff"
           ctx.fillText(
-            chest.type === "life" ? "💙" : chest.type === "data" ? "💾" : chest.type === "power" ? "🧠" : "💥",
+            chest.type === "life" ? "���" : chest.type === "data" ? "���" : chest.type === "power" ? "🧠" : "💥",
             chest.x + chest.width / 2,
             chest.y + chest.height / 2 + 7,
           )
@@ -771,7 +784,8 @@ export default function PlatformerGame({
           ctx.shadowBlur = 30
           ctx.shadowColor = "#0066ff"
 
-          if (enemy.type === "laptop" && questionBoxImageRef.current) {
+          if (typeof enemy.questionId === 'number' && questionBoxImageRef.current) {
+            // Use question box avatar for any enemy that has a question
             ctx.shadowBlur = 30
             ctx.shadowColor = "#0066ff"
             ctx.drawImage(questionBoxImageRef.current, enemy.x, enemy.y, enemy.width, enemy.height)
@@ -823,10 +837,47 @@ export default function PlatformerGame({
         ctx.shadowBlur = isNear ? 40 : 25
         ctx.shadowColor = "#ff0000"
 
-        if (scammerImageRef.current) {
+        if (enemy.type === "quiet_drone" && quietDroneImageRef.current) {
           ctx.shadowBlur = isNear ? 40 : 25
           ctx.shadowColor = isNear ? "#ff3333" : "#ff0066"
-          ctx.drawImage(scammerImageRef.current, enemy.x, enemy.y + bounce, enemy.width, enemy.height)
+          // quiet_drone: static image, no flipping
+          ctx.drawImage(quietDroneImageRef.current, enemy.x, enemy.y + bounce, enemy.width, enemy.height)
+          ctx.shadowBlur = 0
+
+          ctx.strokeStyle = isNear ? "#ffff00" : "#ffffff"
+          ctx.lineWidth = isNear ? 3 : 2
+          ctx.strokeRect(enemy.x, enemy.y + bounce, enemy.width, enemy.height)
+        } else if (enemy.type === "drone" && scammerImageRef.current) {
+          ctx.shadowBlur = isNear ? 40 : 25
+          ctx.shadowColor = isNear ? "#ff3333" : "#ff0066"
+          // drone: use scammer image and flip horizontally when moving left
+          if (enemy.patrolDirection < 0) {
+            ctx.save()
+            ctx.translate(enemy.x + enemy.width / 2, enemy.y + bounce + enemy.height / 2)
+            ctx.scale(-1, 1)
+            ctx.drawImage(scammerImageRef.current, -enemy.width / 2, -enemy.height / 2, enemy.width, enemy.height)
+            ctx.restore()
+          } else {
+            ctx.drawImage(scammerImageRef.current, enemy.x, enemy.y + bounce, enemy.width, enemy.height)
+          }
+          ctx.shadowBlur = 0
+
+          ctx.strokeStyle = isNear ? "#ffff00" : "#ffffff"
+          ctx.lineWidth = isNear ? 3 : 2
+          ctx.strokeRect(enemy.x, enemy.y + bounce, enemy.width, enemy.height)
+        } else if (scammerImageRef.current) {
+          ctx.shadowBlur = isNear ? 40 : 25
+          ctx.shadowColor = isNear ? "#ff3333" : "#ff0066"
+          // fallback: draw scammer image (flipped if moving left)
+          if (enemy.patrolDirection < 0) {
+            ctx.save()
+            ctx.translate(enemy.x + enemy.width / 2, enemy.y + bounce + enemy.height / 2)
+            ctx.scale(-1, 1)
+            ctx.drawImage(scammerImageRef.current, -enemy.width / 2, -enemy.height / 2, enemy.width, enemy.height)
+            ctx.restore()
+          } else {
+            ctx.drawImage(scammerImageRef.current, enemy.x, enemy.y + bounce, enemy.width, enemy.height)
+          }
           ctx.shadowBlur = 0
 
           ctx.strokeStyle = isNear ? "#ffff00" : "#ffffff"
@@ -851,24 +902,12 @@ export default function PlatformerGame({
 
           let icon = "🛸"
           if (enemy.type === "drone") icon = "🛸"
-          else if (enemy.type === "virus") icon = "🦠"
-          else if (enemy.type === "firewall") icon = "🛡️"
-          else if (enemy.type === "splitter") icon = "👥"
-          else if (enemy.type === "shooter") icon = "🔫"
-          else if (enemy.type === "rope-crawler") icon = "🕷️"
+          else if (enemy.type === "quiet_drone") icon = "🛸"
 
           ctx.fillText(icon, enemy.x + enemy.width / 2, enemy.y + enemy.height / 2 + 9 + bounce)
         }
 
-        if (enemy.type === "rope-crawler" && enemy.ropeX && enemy.ropeLength) {
-          ctx.strokeStyle = "rgba(200, 200, 200, 0.6)"
-          ctx.lineWidth = 2
-          ctx.beginPath()
-          ctx.moveTo(enemy.ropeX, 0)
-          ctx.lineTo(enemy.x + enemy.width / 2, enemy.y)
-          ctx.stroke()
-        }
-      })
+              })
 
       particlesRef.current.forEach((p) => {
         const alpha = p.life / p.maxLife
@@ -913,12 +952,6 @@ export default function PlatformerGame({
     if (correct && currentEnemy) {
       enemiesRef.current = enemiesRef.current.map((e) => (e.id === currentEnemy.id ? { ...e, defeated: true } : e))
       cyberIQGainedRef.current += 10
-      SoundManager.playSuccess()
-    } else if (skipQuizPowerRef.current > 0) {
-      skipQuizPowerRef.current--
-      if (currentEnemy) {
-        enemiesRef.current = enemiesRef.current.map((e) => (e.id === currentEnemy.id ? { ...e, defeated: true } : e))
-      }
       SoundManager.playSuccess()
     } else {
       SoundManager.playError()
@@ -986,12 +1019,7 @@ export default function PlatformerGame({
             <div>
               CYBER IQ: <span className="text-neon-green">{gameState.cyberIQ + cyberIQGainedRef.current}</span>
             </div>
-            {skipQuizPowerRef.current > 0 && (
-              <div>
-                SKIP: <span className="text-neon-yellow">🧠 x{skipQuizPowerRef.current}</span>
-              </div>
-            )}
-          </div>
+                      </div>
 
           <MiniRadar
             playerX={playerRef.current.x}
@@ -1042,6 +1070,7 @@ export default function PlatformerGame({
         <ChatQuizPopup
           question={currentLevelData.current.questions[currentEnemy.questionId]}
           onAnswer={handleQuizAnswer}
+          avatarUrl={"https://cdn.builder.io/api/v1/image/assets%2Fa1364f8719984147b2ab8641706334f8%2F3e15b926d5b5482c8c2da90d632e6bcd?format=webp&width=800"}
         />
       )}
 
@@ -1076,18 +1105,17 @@ export default function PlatformerGame({
                   <span className="text-red-400">🔴 Ánh sáng đỏ</span> = Kẻ địch tuần tra (di chuyển, gây sát thương)
                 </p>
                 <p>
-                  <span className="text-green-400">💚 Phát sáng xanh lá</span> = Rương vật phẩm (💙 mạng, 💾 điểm, 🧠
-                  skip, 💥 stun)
+                  <span className="text-green-400">💚 Phát sáng xanh lá</span> = Rương vật phẩm (💙 mạng, 💾 điểm, 💥 stun)
                 </p>
               </div>
 
               <div>
-                <h3 className="font-bold text-neon-green mb-1">🛡️ Vùng An Toàn:</h3>
+                <h3 className="font-bold text-neon-green mb-1">🛡️ V��ng An Toàn:</h3>
                 <p>Khi bắt đầu mỗi tầng, bạn có 2 giây miễn sát thương trong vùng xanh lá để chuẩn bị!</p>
               </div>
 
               <div>
-                <h3 className="font-bold text-neon-yellow mb-1">💡 Mẹo Chơi:</h3>
+                <h3 className="font-bold text-neon-yellow mb-1">��� Mẹo Chơi:</h3>
                 <ul className="list-disc list-inside space-y-1">
                   <li>Quan sát kỹ màu sắc để phân biệt vật thể</li>
                   <li>Kẻ địch đỏ sẽ nhấp nháy khi bạn ở gần - hãy cẩn thận!</li>
@@ -1109,7 +1137,7 @@ export default function PlatformerGame({
           <div className="glass-panel rounded-lg p-8 text-center space-y-4 max-w-md">
             <div className="text-4xl">🎉</div>
             <h2 className="text-3xl font-bold text-neon-green">HOÀN THÀNH!</h2>
-            <p className="text-foreground/90">Bạn đã vượt qua tầng {gameState.currentLevel}!</p>
+            <p className="text-foreground/90">Bạn đã vượt qua t��ng {gameState.currentLevel}!</p>
             <div className="text-2xl font-bold text-neon-cyan">+{cyberIQGainedRef.current} Cyber IQ</div>
           </div>
         </div>

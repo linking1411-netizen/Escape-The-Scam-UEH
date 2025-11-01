@@ -8,6 +8,7 @@ import type { Question } from "@/lib/level-data"
 interface ChatQuizPopupProps {
   question: Question
   onAnswer: (correct: boolean) => void
+  avatarUrl?: string
 }
 
 interface Message {
@@ -17,7 +18,7 @@ interface Message {
   icon: string
 }
 
-export default function ChatQuizPopup({ question, onAnswer }: ChatQuizPopupProps) {
+export default function ChatQuizPopup({ question, onAnswer, avatarUrl }: ChatQuizPopupProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [showAnswers, setShowAnswers] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
@@ -104,8 +105,12 @@ export default function ChatQuizPopup({ question, onAnswer }: ChatQuizPopupProps
           {/* Header */}
           <div className="bg-gradient-to-r from-danger-red/20 to-neon-magenta/20 border-b border-primary/30 p-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-danger-red/30 flex items-center justify-center text-2xl">
-                {question.villainIcon}
+              <div className="w-10 h-10 rounded-full bg-danger-red/30 flex items-center justify-center text-2xl overflow-hidden">
+                {avatarUrl ? (
+                  <img src={avatarUrl} alt="avatar" className="w-full h-full object-cover" />
+                ) : (
+                  <div className="text-2xl">{question.villainIcon}</div>
+                )}
               </div>
               <div>
                 <div className="font-bold text-foreground">Kẻ Lừa Đảo</div>
@@ -130,6 +135,12 @@ export default function ChatQuizPopup({ question, onAnswer }: ChatQuizPopupProps
                     </div>
                   )}
 
+                  {msg.sender === "villain" && avatarUrl && (
+                    <div className="w-8 h-8 rounded-full bg-danger-red/30 flex items-center justify-center text-lg flex-shrink-0 overflow-hidden">
+                      <img src={avatarUrl} alt="villain-avatar" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+
                   <div
                     className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                       msg.sender === "villain"
@@ -143,7 +154,7 @@ export default function ChatQuizPopup({ question, onAnswer }: ChatQuizPopupProps
                     <p className="text-sm text-foreground/90">{msg.text}</p>
                   </div>
 
-                  {msg.sender === "villain" && (
+                  {msg.sender === "villain" && !avatarUrl && (
                     <div className="w-8 h-8 rounded-full bg-danger-red/30 flex items-center justify-center text-lg flex-shrink-0">
                       {msg.icon}
                     </div>
