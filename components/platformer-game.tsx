@@ -188,8 +188,8 @@ export default function PlatformerGame({
         id: `patrol-${i}`,
         x: e.x,
         y: e.y,
-        width: 45,
-        height: 45,
+        width: playerRef.current.width,
+        height: playerRef.current.height,
         type: e.type,
         patrolStart: typeof e.patrolStart === 'number' ? e.patrolStart : e.x,
         patrolEnd: typeof e.patrolEnd === 'number' ? e.patrolEnd : e.x,
@@ -685,7 +685,7 @@ export default function PlatformerGame({
           ctx.textAlign = "center"
           ctx.fillStyle = "#ffffff"
           ctx.fillText(
-            chest.type === "life" ? "���" : chest.type === "data" ? "���" : chest.type === "power" ? "🧠" : "💥",
+            chest.type === "life" ? "💙" : chest.type === "data" ? "���" : chest.type === "power" ? "🧠" : "💥",
             chest.x + chest.width / 2,
             chest.y + chest.height / 2 + 7,
           )
@@ -1041,7 +1041,7 @@ export default function PlatformerGame({
       {showTutorial && (
         <div className="absolute inset-0 flex items-center justify-center bg-background/90 backdrop-blur-sm z-40">
           <div className="glass-panel rounded-lg p-6 max-w-2xl max-h-[80vh] overflow-y-auto space-y-4">
-            <h2 className="text-2xl font-bold text-neon-cyan">�� HƯỚNG DẪN CHƠI</h2>
+            <h2 className="text-2xl font-bold text-neon-cyan">🎮 HƯỚNG DẪN CHƠI</h2>
 
             <div className="space-y-3 text-sm">
               <div>
