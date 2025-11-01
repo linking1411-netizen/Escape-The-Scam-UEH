@@ -80,6 +80,7 @@ export default function PlatformerGame({
   const characterImageRef = useRef<HTMLImageElement | null>(null)
   const scammerImageRef = useRef<HTMLImageElement | null>(null)
   const questionBoxImageRef = useRef<HTMLImageElement | null>(null)
+  const quietDroneImageRef = useRef<HTMLImageElement | null>(null)
   const jumpImageRef = useRef<HTMLImageElement | null>(null)
   const deadImageRef = useRef<HTMLImageElement | null>(null)
 
@@ -141,6 +142,13 @@ export default function PlatformerGame({
       "https://cdn.builder.io/api/v1/image/assets%2Fa1364f8719984147b2ab8641706334f8%2F3e15b926d5b5482c8c2da90d632e6bcd?format=webp&width=800"
     questionBoxImg.onload = () => {
       questionBoxImageRef.current = questionBoxImg
+    }
+
+    const quietDroneImg = new Image()
+    quietDroneImg.src =
+      "https://cdn.builder.io/api/v1/image/assets%2Fa1364f8719984147b2ab8641706334f8%2F3692630015b742a5b478443d31daa26f?format=webp&width=800"
+    quietDroneImg.onload = () => {
+      quietDroneImageRef.current = quietDroneImg
     }
   }, [])
 
@@ -677,7 +685,7 @@ export default function PlatformerGame({
           ctx.textAlign = "center"
           ctx.fillStyle = "#ffffff"
           ctx.fillText(
-            chest.type === "life" ? "💙" : chest.type === "data" ? "���" : chest.type === "power" ? "🧠" : "💥",
+            chest.type === "life" ? "���" : chest.type === "data" ? "���" : chest.type === "power" ? "🧠" : "💥",
             chest.x + chest.width / 2,
             chest.y + chest.height / 2 + 7,
           )
@@ -810,7 +818,16 @@ export default function PlatformerGame({
         ctx.shadowBlur = isNear ? 40 : 25
         ctx.shadowColor = "#ff0000"
 
-        if (scammerImageRef.current) {
+        if (enemy.type === "quiet_drone" && quietDroneImageRef.current) {
+          ctx.shadowBlur = isNear ? 40 : 25
+          ctx.shadowColor = isNear ? "#ff3333" : "#ff0066"
+          ctx.drawImage(quietDroneImageRef.current, enemy.x, enemy.y + bounce, enemy.width, enemy.height)
+          ctx.shadowBlur = 0
+
+          ctx.strokeStyle = isNear ? "#ffff00" : "#ffffff"
+          ctx.lineWidth = isNear ? 3 : 2
+          ctx.strokeRect(enemy.x, enemy.y + bounce, enemy.width, enemy.height)
+        } else if (scammerImageRef.current) {
           ctx.shadowBlur = isNear ? 40 : 25
           ctx.shadowColor = isNear ? "#ff3333" : "#ff0066"
           ctx.drawImage(scammerImageRef.current, enemy.x, enemy.y + bounce, enemy.width, enemy.height)
@@ -1024,7 +1041,7 @@ export default function PlatformerGame({
       {showTutorial && (
         <div className="absolute inset-0 flex items-center justify-center bg-background/90 backdrop-blur-sm z-40">
           <div className="glass-panel rounded-lg p-6 max-w-2xl max-h-[80vh] overflow-y-auto space-y-4">
-            <h2 className="text-2xl font-bold text-neon-cyan">🎮 HƯỚNG DẪN CHƠI</h2>
+            <h2 className="text-2xl font-bold text-neon-cyan">�� HƯỚNG DẪN CHƠI</h2>
 
             <div className="space-y-3 text-sm">
               <div>
