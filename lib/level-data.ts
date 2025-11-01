@@ -82,7 +82,7 @@ export const levelData: LevelData[] = [
     ],
     patrolEnemies: [
       { x: 200, y: 510, type: "drone", patrolStart: 100, patrolEnd: 280, patrolSpeed: 1.2 },
-      { x: 500, y: 410, type: "virus", patrolStart: 300, patrolEnd: 500, patrolSpeed: 1.0 },
+      { x: 500, y: 410, type: "quiet_drone", patrolStart: 500, patrolEnd: 500, patrolSpeed: 0 },
     ],
     portal: { x: 850, y: 410, width: 80, height: 80 },
     decorations: [
@@ -260,7 +260,7 @@ export const levelData: LevelData[] = [
           "A. Chuyển tiền ngay để bảo vệ hình ảnh",
           "B. Báo công an và giữ lại toàn bộ tin nhắn làm bằng chứng",
           "C. Chặn tin nhắn và im lặng",
-          "D. Đăng tin lên mạng đ�� nhờ hỗ trợ",
+          "D. Đăng tin lên mạng để nhờ hỗ trợ",
         ],
         correctAnswer: 1,
         explanation: "Đây là hành vi tống tiền. Cần giữ bằng chứng (tin nhắn, tài khoản, thời gian) và trình báo ngay.",
