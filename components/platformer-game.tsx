@@ -202,7 +202,7 @@ export default function PlatformerGame({
     // Increase patrol difficulty by adding 2 extra patrol enemies per level (levelIndex starts at 1)
     const extraCount = Math.max(0, (gameState.currentLevel - 1) * 2)
     const extras: PatrolEnemy[] = []
-    const baseLen = newPatrolEnemies.length || 1
+    const baseLen = newPatrolEnemies.length
     for (let i = 0; i < extraCount; i++) {
       const base = newPatrolEnemies[i % baseLen]
       if (!base) continue
@@ -1127,7 +1127,7 @@ export default function PlatformerGame({
               </div>
 
               <div>
-                <h3 className="font-bold text-neon-yellow mb-1">💡 Mẹo Chơi:</h3>
+                <h3 className="font-bold text-neon-yellow mb-1">��� Mẹo Chơi:</h3>
                 <ul className="list-disc list-inside space-y-1">
                   <li>Quan sát kỹ màu sắc để phân biệt vật thể</li>
                   <li>Kẻ địch đỏ sẽ nhấp nháy khi bạn ở gần - hãy cẩn thận!</li>
