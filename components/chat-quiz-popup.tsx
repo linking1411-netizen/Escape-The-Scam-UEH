@@ -107,9 +107,9 @@ export default function ChatQuizPopup({ question, onAnswer, avatarUrl }: ChatQui
         {/* Chat container */}
         <div className="glass-panel rounded-lg overflow-hidden border-2 border-primary/50 shadow-2xl">
           {/* Header */}
-          <div className="bg-gradient-to-r from-danger-red/20 to-neon-magenta/20 border-b border-primary/30 p-3 sm:p-4">
+          <div className="bg-gradient-to-r from-danger-red/20 to-neon-magenta/20 border-b border-primary/30 p-2 xs:p-3 sm:p-4">
             <div className="flex items-center gap-2 sm:gap-3">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-danger-red/30 flex items-center justify-center text-lg sm:text-2xl overflow-hidden flex-shrink-0">
+              <div className="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 rounded-full bg-danger-red/30 flex items-center justify-center text-base xs:text-lg sm:text-2xl overflow-hidden flex-shrink-0">
                 {avatarUrl ? (
                   <img src={avatarUrl} alt="avatar" className="w-full h-full object-cover" />
                 ) : (
