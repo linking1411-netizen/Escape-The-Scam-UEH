@@ -56,7 +56,7 @@ export default function TutorialPopup({ onClose }: TutorialPopupProps) {
                     • <span className="text-neon-cyan">D / →</span> - Di chuyển sang phải
                   </li>
                   <li>
-                    • <span className="text-neon-cyan">SPACE / W</span> - Nhảy
+                    �� <span className="text-neon-cyan">SPACE / W</span> - Nhảy
                   </li>
                 </ul>
               </div>
@@ -84,11 +84,11 @@ export default function TutorialPopup({ onClose }: TutorialPopupProps) {
               </li>
               <li className="flex gap-2">
                 <span className="text-neon-cyan">2.</span>
-                <span>Va chạm với kẻ xấu (💻 📷 🤖) để kích hoạt câu hỏi</span>
+                <span>Va chạm với kẻ xấu (💻 📷 ���) để kích hoạt câu hỏi</span>
               </li>
               <li className="flex gap-2">
                 <span className="text-neon-cyan">3.</span>
-                <span>Trả lời đúng để đánh bại kẻ xấu và nhận +10 Cyber IQ</span>
+                <span>Trả lời đúng để đánh bại kẻ xấu</span>
               </li>
               <li className="flex gap-2">
                 <span className="text-neon-cyan">4.</span>
