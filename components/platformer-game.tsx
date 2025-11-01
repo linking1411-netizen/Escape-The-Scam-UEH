@@ -12,7 +12,7 @@ import MiniRadar from "@/components/mini-radar"
 
 interface PlatformerGameProps {
   gameState: GameState
-  onLevelComplete: (cyberIQGained: number) => void
+  onLevelComplete: () => void
   onGameOver: () => void
   updateGameState: (updates: Partial<GameState>) => void
 }
@@ -107,7 +107,6 @@ export default function PlatformerGame({
   const [showQuiz, setShowQuiz] = useState(false)
   const [currentEnemy, setCurrentEnemy] = useState<Enemy | null>(null)
   const [levelComplete, setLevelComplete] = useState(false)
-  const cyberIQGainedRef = useRef(0)
   const [isMuted, setIsMuted] = useState(false)
   const [showTutorial, setShowTutorial] = useState(false)
 
@@ -586,8 +585,6 @@ export default function PlatformerGame({
 
           if (chest.type === "life") {
             updateGameState({ lives: gameState.lives + 1 })
-          } else if (chest.type === "data") {
-            cyberIQGainedRef.current += 5
           } else if (chest.type === "power") {
             // power chest: grant life or data; skip removed
           }
@@ -614,12 +611,10 @@ export default function PlatformerGame({
         if (portalCollision && !levelComplete) {
           console.log("[v0] Portal collision detected! Player at:", playerRef.current.x, playerRef.current.y)
           console.log("[v0] Portal at:", portal.x, portal.y, "Size:", portal.width, portal.height)
-          const finalScore = cyberIQGainedRef.current
           setLevelComplete(true)
           SoundManager.playSuccess()
-          cyberIQGainedRef.current = 0
           setTimeout(() => {
-            onLevelComplete(finalScore)
+            onLevelComplete()
           }, 1500)
         }
       }
@@ -951,7 +946,6 @@ export default function PlatformerGame({
   const handleQuizAnswer = (correct: boolean) => {
     if (correct && currentEnemy) {
       enemiesRef.current = enemiesRef.current.map((e) => (e.id === currentEnemy.id ? { ...e, defeated: true } : e))
-      cyberIQGainedRef.current += 10
       SoundManager.playSuccess()
     } else {
       SoundManager.playError()
