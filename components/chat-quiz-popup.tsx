@@ -134,19 +134,19 @@ export default function ChatQuizPopup({ question, onAnswer, avatarUrl }: ChatQui
                   className={`flex gap-2 sm:gap-3 ${msg.sender === "system" ? "justify-center" : msg.sender === "linh" ? "justify-start" : "justify-end"}`}
                 >
                   {msg.sender !== "system" && msg.sender === "linh" && (
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-neon-cyan/30 flex items-center justify-center text-base sm:text-lg flex-shrink-0">
+                    <div className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 rounded-full bg-neon-cyan/30 flex items-center justify-center text-xs xs:text-base sm:text-lg flex-shrink-0">
                       {msg.icon}
                     </div>
                   )}
 
                   {msg.sender === "villain" && avatarUrl && (
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-danger-red/30 flex items-center justify-center text-base sm:text-lg flex-shrink-0 overflow-hidden">
+                    <div className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 rounded-full bg-danger-red/30 flex items-center justify-center text-xs xs:text-base sm:text-lg flex-shrink-0 overflow-hidden">
                       <img src={avatarUrl} alt="villain-avatar" className="w-full h-full object-cover" />
                     </div>
                   )}
 
                   <div
-                    className={`rounded-2xl px-3 py-2 sm:px-4 sm:py-3 break-words ${
+                    className={`rounded-lg xs:rounded-xl sm:rounded-2xl px-2.5 py-1.5 xs:px-3 xs:py-2 sm:px-4 sm:py-3 break-words max-w-[85%] xs:max-w-[75%] sm:max-w-none ${
                       msg.sender === "villain"
                         ? "bg-danger-red/20 border border-danger-red/30"
                         : msg.sender === "linh"
