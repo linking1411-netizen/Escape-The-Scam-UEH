@@ -102,8 +102,7 @@ export default function PlatformerGame({
   const chestsRef = useRef<Chest[]>([])
   const decorationsRef = useRef<Decoration[]>([])
   const invincibilityTimerRef = useRef<number>(0)
-  const skipQuizPowerRef = useRef<number>(0)
-
+  
   const [showQuiz, setShowQuiz] = useState(false)
   const [currentEnemy, setCurrentEnemy] = useState<Enemy | null>(null)
   const [levelComplete, setLevelComplete] = useState(false)
@@ -139,7 +138,7 @@ export default function PlatformerGame({
   useEffect(() => {
     const questionBoxImg = new Image()
     questionBoxImg.src =
-      "https://cdn.builder.io/api/v1/image/assets%2Fa1364f8719984147b2ab8641706334f8%2Fda153e9a130a41c8910cdf2394cc3109?format=webp&width=800"
+      "https://cdn.builder.io/api/v1/image/assets%2Fa1364f8719984147b2ab8641706334f8%2F3e15b926d5b5482c8c2da90d632e6bcd?format=webp&width=800"
     questionBoxImg.onload = () => {
       questionBoxImageRef.current = questionBoxImg
     }
@@ -564,7 +563,7 @@ export default function PlatformerGame({
           } else if (chest.type === "data") {
             cyberIQGainedRef.current += 5
           } else if (chest.type === "power") {
-            skipQuizPowerRef.current++
+            // power chest: grant life or data; skip removed
           }
         }
       })
@@ -902,12 +901,6 @@ export default function PlatformerGame({
       enemiesRef.current = enemiesRef.current.map((e) => (e.id === currentEnemy.id ? { ...e, defeated: true } : e))
       cyberIQGainedRef.current += 10
       SoundManager.playSuccess()
-    } else if (skipQuizPowerRef.current > 0) {
-      skipQuizPowerRef.current--
-      if (currentEnemy) {
-        enemiesRef.current = enemiesRef.current.map((e) => (e.id === currentEnemy.id ? { ...e, defeated: true } : e))
-      }
-      SoundManager.playSuccess()
     } else {
       SoundManager.playError()
     }
@@ -974,12 +967,7 @@ export default function PlatformerGame({
             <div>
               CYBER IQ: <span className="text-neon-green">{gameState.cyberIQ + cyberIQGainedRef.current}</span>
             </div>
-            {skipQuizPowerRef.current > 0 && (
-              <div>
-                SKIP: <span className="text-neon-yellow">🧠 x{skipQuizPowerRef.current}</span>
-              </div>
-            )}
-          </div>
+                      </div>
 
           <MiniRadar
             playerX={playerRef.current.x}
@@ -1064,8 +1052,7 @@ export default function PlatformerGame({
                   <span className="text-red-400">🔴 Ánh sáng đỏ</span> = Kẻ địch tuần tra (di chuyển, gây sát thương)
                 </p>
                 <p>
-                  <span className="text-green-400">💚 Phát sáng xanh lá</span> = Rương vật phẩm (💙 mạng, 💾 điểm, 🧠
-                  skip, 💥 stun)
+                  <span className="text-green-400">💚 Phát sáng xanh lá</span> = Rương vật phẩm (💙 mạng, 💾 điểm, 💥 stun)
                 </p>
               </div>
 
