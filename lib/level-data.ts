@@ -66,7 +66,7 @@ export interface LevelData {
 export const levelData: LevelData[] = [
   // Level 1: Phishing Lobby
   {
-    name: "Tầng 1: Nhận diện tin nhắn & đường link lừa đảo",
+    name: "T���ng 1: Nhận diện tin nhắn & đường link lừa đảo",
     theme: "dark cyber hotel lobby with neon lights",
     backgroundImage: "/dark-cyberpunk-hotel-lobby-with-neon-lights-and-glo.jpg",
     platforms: [
@@ -172,7 +172,7 @@ export const levelData: LevelData[] = [
         scenario:
           'Một dự án gửi bạn "Hợp đồng đầu tư online" hứa lợi nhuận 60%/tháng, yêu cầu chuyển tiền trong 1 giờ. Dấu hiệu nào cho thấy đây là lừa đảo?',
         answers: [
-          "A. Có giấy mời đầu tư và chữ ký điện tử",
+          "A. Có giấy mời đ���u tư và chữ ký điện tử",
           "B. Cam kết lãi suất quá cao, yêu cầu nộp tiền gấp",
           "C. Dự án có logo công ty rõ ràng",
           "D. Có người nổi tiếng quảng bá",
@@ -315,12 +315,7 @@ export const levelData: LevelData[] = [
       { x: 500, y: 310, type: "firewall", patrolStart: 450, patrolEnd: 650, patrolSpeed: 1.0 },
     ],
     portal: { x: 1000, y: 310, width: 80, height: 80 },
-    decorations: [
-      { x: 50, y: 490, width: 60, height: 60, type: "green-screen", emoji: "🎬", color: "#00ff00", glow: true },
-      { x: 350, y: 300, width: 45, height: 45, type: "camera", emoji: "📹", color: "#ff00ff", glow: true },
-      { x: 650, y: 400, width: 55, height: 55, type: "distorted-face", emoji: "👤", color: "#ff3333", glow: true },
-      { x: 950, y: 300, width: 40, height: 40, type: "ai-core", emoji: "🧠", color: "#00ffff", glow: true },
-    ],
+    decorations: [],
     chests: [
       { x: 125, y: 420, width: 30, height: 30, type: "life", collected: false },
       { x: 725, y: 420, width: 30, height: 30, type: "data", collected: false },
@@ -365,7 +360,7 @@ export const levelData: LevelData[] = [
         ],
         correctAnswer: 1,
         explanation:
-          "Cần lưu giữ bằng chứng (số đi���n thoại, tài khoản, video) và trình báo ngay cho công an để kịp thời xử lý.",
+          "Cần lưu giữ bằng chứng (số điện thoại, tài khoản, video) và trình báo ngay cho công an để kịp thời xử lý.",
         villainIcon: "📷",
       },
     ],
