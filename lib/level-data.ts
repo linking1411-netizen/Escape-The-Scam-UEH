@@ -176,7 +176,7 @@ export const levelData: LevelData[] = [
     ],
     questions: [
       {
-        title: "Câu 4: Dự án đ���u tư ảo",
+        title: "Câu 4: Dự án đầu tư ảo",
         scenario:
           'Một dự án gửi bạn "Hợp đồng đầu tư online" hứa lợi nhuận 60%/tháng, yêu cầu chuyển tiền trong 1 giờ. Dấu hiệu nào cho thấy đây là lừa đảo?',
         answers: [
