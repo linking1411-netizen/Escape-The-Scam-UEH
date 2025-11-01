@@ -96,7 +96,7 @@ export const levelData: LevelData[] = [
         scenario:
           'Bạn nhận được tin nhắn với đường link "http://gift-bank.vip" thông báo trúng thưởng 5 triệu đồng. Hành động nào là an toàn nhất?',
         answers: [
-          "A. Bấm vào link ��ể nhận quà",
+          "A. Bấm vào link để nhận quà",
           "B. Gửi link cho bạn bè để hỏi thử",
           "C. Bỏ qua, không nhấp vào và báo cáo tin nhắn lừa đảo",
           "D. Lưu lại để hôm sau kiểm tra",
@@ -235,11 +235,7 @@ export const levelData: LevelData[] = [
       { x: 500, y: 310, type: "quiet_drone", patrolStart: 500, patrolEnd: 500, patrolSpeed: 0 },
     ],
     portal: { x: 880, y: 370, width: 80, height: 80 },
-    decorations: [
-      { x: 80, y: 490, width: 50, height: 50, type: "gold", emoji: "💰", color: "#ffd700", glow: true },
-      { x: 350, y: 330, width: 55, height: 55, type: "ad-glitch", emoji: "📊", color: "#00ff00", glow: true },
-      { x: 600, y: 250, width: 45, height: 45, type: "money", emoji: "💵", color: "#00ff00", glow: true },
-    ],
+    decorations: [],
     chests: [
       { x: 175, y: 420, width: 30, height: 30, type: "life", collected: false },
       { x: 675, y: 270, width: 30, height: 30, type: "power", collected: false },
@@ -277,7 +273,7 @@ export const levelData: LevelData[] = [
         scenario: "Sau khi nghi ngờ thiết bị bị nhiễm mã độc, bạn nên:",
         answers: [
           "A. Quét virus, đổi mật khẩu và bật xác thực hai lớp",
-          "B. Đăng nhập lại tài khoản cũ để ki��m tra dữ liệu",
+          "B. Đăng nhập lại tài khoản cũ để kiểm tra dữ liệu",
           "C. Mở USB khả nghi để xem nội dung",
           "D. Chia sẻ thiết bị cho người khác kiểm tra giúp",
         ],
@@ -369,7 +365,7 @@ export const levelData: LevelData[] = [
         ],
         correctAnswer: 1,
         explanation:
-          "Cần lưu giữ bằng chứng (số điện thoại, tài khoản, video) và trình báo ngay cho công an để kịp thời xử lý.",
+          "Cần lưu giữ bằng chứng (số đi���n thoại, tài khoản, video) và trình báo ngay cho công an để kịp thời xử lý.",
         villainIcon: "📷",
       },
     ],
