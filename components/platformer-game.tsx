@@ -130,7 +130,7 @@ export default function PlatformerGame({
   useEffect(() => {
     const scammerImg = new Image()
     scammerImg.src =
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scammer.png-UksmxqJ6iiBK3qXgq625oQJuvS1PM3.png"
+      "https://cdn.builder.io/api/v1/image/assets%2Fa1364f8719984147b2ab8641706334f8%2F87c14bbf98e541b1b7c08b735c8945e3?format=webp&width=800"
     scammerImg.onload = () => {
       scammerImageRef.current = scammerImg
     }
@@ -1120,7 +1120,7 @@ export default function PlatformerGame({
           <div className="glass-panel rounded-lg p-8 text-center space-y-4 max-w-md">
             <div className="text-4xl">🎉</div>
             <h2 className="text-3xl font-bold text-neon-green">HOÀN THÀNH!</h2>
-            <p className="text-foreground/90">Bạn đã vượt qua tầng {gameState.currentLevel}!</p>
+            <p className="text-foreground/90">Bạn đã vượt qua t��ng {gameState.currentLevel}!</p>
             <div className="text-2xl font-bold text-neon-cyan">+{cyberIQGainedRef.current} Cyber IQ</div>
           </div>
         </div>
