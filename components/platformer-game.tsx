@@ -1035,6 +1035,7 @@ export default function PlatformerGame({
         <ChatQuizPopup
           question={currentLevelData.current.questions[currentEnemy.questionId]}
           onAnswer={handleQuizAnswer}
+          avatarUrl={questionBoxImageRef.current ? questionBoxImageRef.current.src : undefined}
         />
       )}
 
@@ -1074,7 +1075,7 @@ export default function PlatformerGame({
               </div>
 
               <div>
-                <h3 className="font-bold text-neon-green mb-1">🛡️ Vùng An Toàn:</h3>
+                <h3 className="font-bold text-neon-green mb-1">🛡️ V��ng An Toàn:</h3>
                 <p>Khi bắt đầu mỗi tầng, bạn có 2 giây miễn sát thương trong vùng xanh lá để chuẩn bị!</p>
               </div>
 
