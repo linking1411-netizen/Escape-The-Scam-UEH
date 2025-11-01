@@ -88,7 +88,7 @@ export const levelData: LevelData[] = [
       {
         title: "CÂU HỎI 1: Công ty Luật giả mạo",
         scenario:
-          "Sau khi bị lừa chiếm đoạt tài sản, bạn thấy quảng cáo 'đòi lại tiền bị lừa đảo' từ một công ty Luật với thông tin 'Hỗ trợ lấy lại tiền bị lừa đảo. Đã được ủy quyền bởi Viện Kiểm Sát'. Hãy quyết định xem đây là lừa hay thật dựa trên 4 đáp án sau:",
+          "Sau khi bị lừa chiếm đoạt tài sản, bạn thấy quảng cáo 'đòi lại tiền bị lừa đảo' từ một công ty Luật với thông tin 'Hỗ trợ lấy lại tiền bị lừa đảo. Đã ��ược ủy quyền bởi Viện Kiểm Sát'. Hãy quyết định xem đây là lừa hay thật dựa trên 4 đáp án sau:",
         answers: [
           "A. Là thật, công ty Luật thì sẽ uy tín.",
           "B. Là lừa đảo, tiền đã mất không thể lấy lại",
@@ -118,7 +118,7 @@ export const levelData: LevelData[] = [
       {
         title: "CÂU HỎI 3: Tin nhắn trúng thưởng Shopee",
         scenario:
-          "Bạn nhận được tin nhắn 'Chúc mừng bạn trúng thưởng iPhone 15 từ Shopee. Hãy truy cập shopeepv.com để xác nhận và nhận quà trong 5 phút!'. Hãy xác định đây là tình huống thật hay lừa đảo dựa trên 4 đáp án sau:",
+          "Bạn nhận được tin nhắn 'Chúc mừng bạn trúng thưởng iPhone 15 từ Shopee. Hãy truy cập shopeepv.com để xác nhận và nhận quà trong 5 phút!'. Hãy xác định đây là tình huống th��t hay lừa đảo dựa trên 4 đáp án sau:",
         answers: [
           "A. Là thật, Shopee thường có khuyến mãi bất ngờ.",
           "B. Là lừa đảo, tên miền có ký tự lạ và không chính thống.",
@@ -177,7 +177,7 @@ export const levelData: LevelData[] = [
         scenario:
           "Một người tự xưng là 'chuyên viên tư vấn pháp lý' gọi điện cho bạn, nói rằng hồ sơ khiếu nại của bạn đang được xử lý, nhưng yêu cầu chuyển trước 1 triệu đồng phí dịch vụ để 'bảo vệ quyền lợi người tiêu dùng'. Bạn nên làm gì?",
         answers: [
-          "A. Chuy��n ngay vì số tiền nhỏ.",
+          "A. Chuyển ngay vì số tiền nhỏ.",
           "B. Gửi thông tin cá nhân để họ kiểm tra.",
           "C. Hỏi giấy phép hành nghề và xác minh qua website chính thức của Bộ Tư pháp.",
           "D. Tin tưởng vì họ nói giọng chuyên nghiệp.",
@@ -295,7 +295,7 @@ export const levelData: LevelData[] = [
     ],
     patrolEnemies: [
       { x: 50, y: 510, type: "drone", patrolStart: 50, patrolEnd: 200, patrolSpeed: 1.4 },
-      { x: 250, y: 410, type: "drone", patrolStart: 200, patrolEnd: 400, patrolSpeed: 1.2 },
+      { x: 250, y: 410, type: "quiet_drone", patrolStart: 250, patrolEnd: 250, patrolSpeed: 0 },
     ],
     portal: { x: 1000, y: 310, width: 80, height: 80 },
     decorations: [],
@@ -304,7 +304,7 @@ export const levelData: LevelData[] = [
       {
         title: "CÂU HỎI 10: Email giả mạo ngân hàng",
         scenario:
-          "Bạn nhận được email với tiêu đề: 'Ngân hàng thông báo tài khoản của b��n có giao dịch bất thường. Vui lòng bấm vào link dưới đây để xác minh ngay, nếu không tài khoản sẽ bị khóa.' Email có logo và chữ ký giống hệt ngân hàng thật. Theo bạn, hành động đúng là gì?",
+          "Bạn nhận được email với tiêu đề: 'Ngân hàng thông báo tài khoản của bạn có giao dịch bất thường. Vui lòng bấm vào link dưới đây để xác minh ngay, nếu không tài khoản sẽ bị khóa.' Email có logo và chữ ký giống hệt ngân hàng thật. Theo bạn, hành động đúng là gì?",
         answers: [
           "A. Bấm ngay vào link để tránh bị khóa tài khoản",
           "B. Trả lời email để hỏi thêm chi tiết",
@@ -323,7 +323,7 @@ export const levelData: LevelData[] = [
         answers: [
           "A. Chuyển tiền ngay để không bị hủy đơn",
           "B. Hỏi lại mã đơn hàng và xác nhận trên ứng dụng mua sắm chính thức",
-          "C. Cung cấp địa chỉ và số điện thoại để họ giao nhanh hơn",
+          "C. Cung cấp địa chỉ và số điện thoại đ�� họ giao nhanh hơn",
           "D. Tin tưởng vì shipper nói chuyện lịch sự và có mã đơn hàng",
         ],
         correctAnswer: 1,
