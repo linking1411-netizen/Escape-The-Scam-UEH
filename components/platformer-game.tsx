@@ -901,6 +901,16 @@ export default function PlatformerGame({
     if (correct && currentEnemy) {
       enemiesRef.current = enemiesRef.current.map((e) => (e.id === currentEnemy.id ? { ...e, defeated: true } : e))
       SoundManager.playSuccess()
+
+      const newCorrectCount = correctAnswers + 1
+      setCorrectAnswers(newCorrectCount)
+
+      if (newCorrectCount >= 3) {
+        setLevelComplete(true)
+        setTimeout(() => {
+          onLevelComplete()
+        }, 1500)
+      }
     } else {
       SoundManager.playError()
     }
