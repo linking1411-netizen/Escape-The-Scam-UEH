@@ -109,6 +109,7 @@ export default function PlatformerGame({
   const [levelComplete, setLevelComplete] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
   const [showTutorial, setShowTutorial] = useState(false)
+  const [correctAnswers, setCorrectAnswers] = useState(0)
 
   const keysPressed = useRef<Set<string>>(new Set())
   const animationFrameId = useRef<number>()
