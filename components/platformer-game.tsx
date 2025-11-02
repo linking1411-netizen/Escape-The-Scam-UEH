@@ -224,6 +224,7 @@ export default function PlatformerGame({
 
     particlesRef.current = []
     setLevelComplete(false)
+    setCorrectAnswers(0)
     gameLoopPausedRef.current = false
     invincibilityTimerRef.current = 120 // 2 seconds at 60fps
     coyoteTimeRef.current = 0
