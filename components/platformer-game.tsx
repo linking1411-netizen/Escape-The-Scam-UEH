@@ -1059,7 +1059,7 @@ export default function PlatformerGame({
               <div>
                 <h3 className="font-bold text-neon-yellow mb-1">��� Mẹo Chơi:</h3>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>Quan sát kỹ màu sắc đ��� phân biệt vật thể</li>
+                  <li>Quan sát kỹ màu sắc để phân biệt vật thể</li>
                   <li>Kẻ địch đỏ sẽ nhấp nháy khi bạn ở gần - hãy cẩn thận!</li>
                   <li>Thu thập rương để có thêm mạng và vật phẩm hỗ trợ</li>
                   <li>Trả lời đúng câu hỏi để tăng Cyber IQ và mở portal</li>
@@ -1068,18 +1068,18 @@ export default function PlatformerGame({
             </div>
 
             <Button onClick={() => setShowTutorial(false)} className="w-full">
-              Đã Hiểu - Bắt Đầu Chơi!
+              Đã Hi���u - Bắt Đầu Chơi!
             </Button>
           </div>
         </div>
       )}
 
       {levelComplete && (
-        <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-30">
-          <div className="glass-panel rounded-lg p-8 text-center space-y-4 max-w-md">
-            <div className="text-4xl">🎉</div>
-            <h2 className="text-3xl font-bold text-neon-green">HOÀN THÀNH!</h2>
-            <p className="text-foreground/90">Bạn đã vượt qua tầng {gameState.currentLevel}!</p>
+        <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-30 p-4">
+          <div className="glass-panel rounded-lg p-4 sm:p-8 text-center space-y-3 sm:space-y-4 max-w-sm">
+            <div className="text-3xl sm:text-4xl">🎉</div>
+            <h2 className="text-xl sm:text-3xl font-bold text-neon-green">HOÀN THÀNH!</h2>
+            <p className="text-xs sm:text-base text-foreground/90">Bạn đã vượt qua tầng {gameState.currentLevel}!</p>
           </div>
         </div>
       )}
