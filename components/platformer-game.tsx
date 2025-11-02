@@ -600,16 +600,6 @@ export default function PlatformerGame({
         }
       })
 
-      const allEnemiesDefeated = enemies.every((e) => e.defeated)
-
-      if (allEnemiesDefeated && !levelComplete) {
-        console.log("[v0] All enemies defeated! Level complete!")
-        setLevelComplete(true)
-        SoundManager.playSuccess()
-        setTimeout(() => {
-          onLevelComplete()
-        }, 1500)
-      }
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
